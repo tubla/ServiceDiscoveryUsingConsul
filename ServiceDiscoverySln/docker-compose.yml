@@ -1,0 +1,13 @@
+services:
+  deliveries.api:
+    image: ${DOCKER_REGISTRY-}deliveriesapi
+    build:
+      context: .
+      dockerfile: Services/Deliveries.API/Dockerfile
+
+  orders.api:
+    image: ${DOCKER_REGISTRY-}ordersapi
+    build:
+      context: .
+      dockerfile: Services/Orders.API/Dockerfile
+
