@@ -5,7 +5,8 @@
       "commandVersion": "1.0",
       "serviceActions": {
         "deliveries.api": "StartDebugging",
-        "orders.api": "StartDebugging"
+        "orders.api": "StartDebugging",
+        "gateway.api": "StartDebugging"
       }
     }
   }

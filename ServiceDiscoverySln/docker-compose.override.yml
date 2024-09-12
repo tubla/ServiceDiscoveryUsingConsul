@@ -1,6 +1,8 @@
 services:
   deliveries.api:
     container_name: deliveries
+    networks:
+      - gateway
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -17,6 +19,8 @@ services:
        
   orders.api:
     container_name: orders
+    networks:
+      - gateway
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
@@ -30,3 +34,28 @@ services:
       - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ~/.aspnet/https:/https:ro #this is very important for https
+
+  gateway.api:
+    container_name: gateway
+    networks:
+      - gateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=TublaArohe@2019
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    depends_on:
+      - deliveries.api
+      - orders.api 
+    ports:
+      - "9000:8080"
+      - "9001:8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/home/app/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
+      - ~/.aspnet/https:/https:ro #this is very important for https
+
+networks:
+  gateway: {} 
+

@@ -1,16 +1,13 @@
-
-// This configuration is used when ocelot runs as a local service and not as a containerized service
-
 {
   "Routes": [
-    //Delivery.API
+    // Delivery.API
     {
       "DownstreamPathTemplate": "/api/deliveries/orders/{orderId}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8001
+          "Host": "deliveries.api", // Docker service name not the container name
+          "Port": 8080 // Internal port for deliveries service
         }
       ],
       "UpstreamPathTemplate": "/deliveries/orders/{orderId}",
@@ -18,24 +15,24 @@
     },
     {
       "DownstreamPathTemplate": "/api/deliveries/{deliveryId}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8001
+          "Host": "deliveries.api", // Docker service name
+          "Port": 8080 // Internal port for deliveries service
         }
       ],
       "UpstreamPathTemplate": "/deliveries/{deliveryId}",
       "UpstreamHttpMethod": [ "Get" ]
     },
-    //Orders.API
+    // Orders.API
     {
       "DownstreamPathTemplate": "/api/orders/customers/{customerId}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8051
+          "Host": "orders.api", // Docker service name
+          "Port": 8080 // Internal port for orders service
         }
       ],
       "UpstreamPathTemplate": "/orders/customers/{customerId}",
@@ -43,19 +40,17 @@
     },
     {
       "DownstreamPathTemplate": "/api/orders/{orderId}",
-      "DownstreamScheme": "https",
+      "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "localhost",
-          "Port": 8051
+          "Host": "orders.api", // Docker service name
+          "Port": 8080 // Internal port for orders service
         }
       ],
       "UpstreamPathTemplate": "/orders/{orderId}",
       "UpstreamHttpMethod": [ "Get" ]
     }
   ],
-
-  "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:7001" // gateway will be running at this address
-  }
+  "DangerousAcceptAnyServerCertificateValidator": true,
+  "GlobalConfiguration": {}
 }

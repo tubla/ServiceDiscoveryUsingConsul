@@ -19,7 +19,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// ********************** IMPORTANT *****************************************
+
+// If this is not commented then ocelot gateway downstreampath will not be able to connect to the api
+// as ocelot is configured with http scheme for accessing apis.
+
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
