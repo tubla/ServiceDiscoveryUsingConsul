@@ -3,12 +3,14 @@ services:
     container_name: deliveries
     networks:
       - gateway
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_HTTPS_PORTS=8081
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=TublaArohe@2019
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    env_file: 
+      - secret.env
+    # environment:
+    #   - ASPNETCORE_ENVIRONMENT=Development
+    #   - ASPNETCORE_HTTP_PORTS=8080
+    #   - ASPNETCORE_HTTPS_PORTS=8081
+    #   - ASPNETCORE_Kestrel__Certificates__Default__Password=${KESTRAL_PASSWORD}
+    #   - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     ports:
       - "8000:8080"
       - "8001:8081"
@@ -21,12 +23,14 @@ services:
     container_name: orders
     networks:
       - gateway
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_HTTPS_PORTS=8081
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=TublaArohe@2019
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    env_file: 
+      - secret.env
+    # environment:
+    #   - ASPNETCORE_ENVIRONMENT=Development
+    #   - ASPNETCORE_HTTP_PORTS=8080
+    #   - ASPNETCORE_HTTPS_PORTS=8081
+    #   - ASPNETCORE_Kestrel__Certificates__Default__Password=${KESTRAL_PASSWORD}
+    #   - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     ports:
       - "8050:8080"
       - "8051:8081"
@@ -39,12 +43,14 @@ services:
     container_name: gateway
     networks:
       - gateway
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_HTTPS_PORTS=8081
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=TublaArohe@2019
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    env_file: 
+      - secret.env 
+    #environment:
+      # - ASPNETCORE_ENVIRONMENT=Development
+      # - ASPNETCORE_HTTP_PORTS=8080
+      # - ASPNETCORE_HTTPS_PORTS=8081
+      # - ASPNETCORE_Kestrel__Certificates__Default__Password=${KESTRAL_PASSWORD}
+      # - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     depends_on:
       - deliveries.api
       - orders.api 
