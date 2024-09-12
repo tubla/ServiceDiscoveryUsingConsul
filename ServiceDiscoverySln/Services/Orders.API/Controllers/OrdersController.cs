@@ -6,7 +6,7 @@ using Orders.API.Repositories;
 namespace Orders.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class OrdersController(IOrderRepository orderRepository) : ControllerBase
     {
         [HttpGet("customers/{customerId:guid}")]
