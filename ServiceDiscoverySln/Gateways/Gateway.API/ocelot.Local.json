@@ -1,0 +1,61 @@
+
+// This configuration is used when ocelot runs as a local service and not as a containerized service
+
+{
+  "Routes": [
+    //Delivery.API
+    {
+      "DownstreamPathTemplate": "/api/deliveries/orders/{orderId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8001"
+        }
+      ],
+      "UpstreamPathTemplate": "/deliveries/orders/{orderId}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/deliveries/{deliveryId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8001"
+        }
+      ],
+      "UpstreamPathTemplate": "/deliveries/{deliveryId}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    //Orders.API
+    {
+      "DownstreamPathTemplate": "/api/orders/customers/{customerId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8051"
+        }
+      ],
+      "UpstreamPathTemplate": "/orders/customers/{customerId}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/orders/{orderId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "8051"
+        }
+      ],
+      "UpstreamPathTemplate": "/orders/{orderId}",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7001" // gateway will be running at this address
+  }
+}
