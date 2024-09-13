@@ -5,7 +5,7 @@
       "launchBrowser": false,
       "environmentVariables": {
         //"ASPNETCORE_ENVIRONMENT": "Local"
-        "ASPNETCORE_ENVIRONMENT": "ServiceDiscovery"
+        "ASPNETCORE_ENVIRONMENT": "ServiceDiscoveryLocal"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "http://localhost:7000"
@@ -15,7 +15,7 @@
       "launchBrowser": false,
       "environmentVariables": {
         //"ASPNETCORE_ENVIRONMENT": "Local",
-        "ASPNETCORE_ENVIRONMENT": "ServiceDiscovery"
+        "ASPNETCORE_ENVIRONMENT": "ServiceDiscoveryLocal"
       },
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7001;http://localhost:7000"

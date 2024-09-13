@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // For running ocelot.Local.json set "ASPNETCORE_ENVIRONMENT": "Local" in launchSettings.json
 // For running ocelot.Development.json it will be read from the docker environment settings
-// For running ocelot.ServiceDiscovery.json locally set "ASPNETCORE_ENVIRONMENT": "ServiceDiscovery" in launchSettings.json
+// For running ocelot.ServiceDiscovery.json locally set "ASPNETCORE_ENVIRONMENT": "ServiceDiscoveryLocal" in launchSettings.json
 
 builder.Configuration.AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.json", true, true);
 builder.Services.AddOcelot()
