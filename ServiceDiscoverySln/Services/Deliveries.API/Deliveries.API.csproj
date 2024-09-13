@@ -16,4 +16,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\ServiceDiscovery\ServiceDiscovery.Infra\ServiceDiscovery.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

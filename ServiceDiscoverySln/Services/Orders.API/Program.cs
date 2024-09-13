@@ -1,10 +1,16 @@
 using Orders.API.Repositories;
+using ServiceDiscovery.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
+
+// Register orders.api service details to consul service discovery
+builder.Services.RegisterConsulServices(builder.Configuration.GetServiceDetailsConfiguration());
+
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

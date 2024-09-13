@@ -18,3 +18,7 @@ services:
       context: .
       dockerfile: Gateways/Gateway.API/Dockerfile
 
+  
+  consul:
+    image: hashicorp/consul
+

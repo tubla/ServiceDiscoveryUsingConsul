@@ -44,6 +44,16 @@ services:
       - ${APPDATA}/ASP.NET/Https:/home/app/.aspnet/https:ro
       - ~/.aspnet/https:/https:ro #this is very important for https
 
+
+  consul:
+    container_name: consul_container
+    command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+    hostname: consul
+    networks: 
+      - gateway
+    ports:
+      - "8500:8500"
+
 networks:
   gateway: {} 
 

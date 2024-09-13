@@ -1,4 +1,5 @@
 using Deliveries.API.Repositories;
+using ServiceDiscovery.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IDeliveriesRepository, DeliveriesRepository>();
 builder.Services.AddControllers();
+
+// Register delivery.api service details to consul service discovery
+builder.Services.RegisterConsulServices(builder.Configuration.GetServiceDetailsConfiguration());
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
