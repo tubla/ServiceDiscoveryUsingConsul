@@ -1,16 +1,21 @@
 using Ocelot.Cache.CacheManager;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Consul;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 // For running ocelot.Local.json set "ASPNETCORE_ENVIRONMENT": "Local" in launchSettings.json
-// For docker it will be read from the docker environment settings
+// For running ocelot.Development.json it will be read from the docker environment settings
+// For running ocelot.ServiceDiscovery.json locally set "ASPNETCORE_ENVIRONMENT": "ServiceDiscovery" in launchSettings.json
+
 builder.Configuration.AddJsonFile($"ocelot.{builder.Environment.EnvironmentName}.json", true, true);
 builder.Services.AddOcelot()
-                .AddCacheManager(settings => settings.WithDictionaryHandle());
+                .AddCacheManager(settings => settings.WithDictionaryHandle())
+                .AddConsul(); // Adding consul service discovey to ocelot gateway 
+
 //.AddDelegatingHandler<DownstreamUrlHandler>(true);
 builder.Logging.ClearProviders()
                .AddConsole()

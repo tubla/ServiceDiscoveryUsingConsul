@@ -48,7 +48,7 @@ services:
   consul:
     container_name: consul_container
     command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
-    hostname: consul
+    hostname: localhost
     networks: 
       - gateway
     ports:
