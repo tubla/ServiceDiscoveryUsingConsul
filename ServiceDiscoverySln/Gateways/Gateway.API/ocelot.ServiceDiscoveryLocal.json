@@ -33,7 +33,7 @@
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {
-      "Host": "localhost",
+      "Host": "localhost", // take the hostname from docker-compose consul configuration
       "Port": 8500,
       "Type": "Consul"
     }

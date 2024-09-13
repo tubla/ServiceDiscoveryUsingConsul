@@ -1,0 +1,41 @@
+// This configuration is not working as of now, need to check.
+
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/deliveries/orders/{orderId}",
+      "DownstreamScheme": "http",
+      "ServiceName": "deliveriesapi",
+      "UpstreamPathTemplate": "/api/deliveries/{orderId}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/deliveries/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "deliveriesapi",
+      "UpstreamPathTemplate": "/deliveries/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ordersapi",
+      "UpstreamPathTemplate": "/orders/customers/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/{everything}",
+      "DownstreamScheme": "http",
+      "ServiceName": "ordersapi",
+      "UpstreamPathTemplate": "/orders/{everything}",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "consul",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  }
+}
